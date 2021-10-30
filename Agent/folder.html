@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LRD</title>
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+     <!-- Css -->
+     <link rel="stylesheet" href="ad.css">
+     <link rel="shortcut icon" href="../Images/icon.png" type="image/x-icon">
+     <link rel="icon" href="../Images/icon.png" type="image/x-icon">
+</head>
+<body>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+    <div class="Fullpage">
+               <div class="header">
+              <img src="../Images/icon.png" height="75px" width="75px">
+                    <h3 id="title">Lab Report Digitalization</h3>
+                    <button class="SubmitAD" onclick="window.history.back()">Back</button>
+                    </div>
+                    <hr>
+                    <h2 id="title2">Files in Directory</h2>
+                <div class="AdFormMain container">
+                          <h3>List of Files</h3>
+                          <ul> 
+                            <li><span class="caret" id="fil">Files</span></li>
+                           </ul>  
+                      <label for="User">User File name</label>
+                      <input type="text" placeholder="File Name" class="form-control" id="filename" required> 
+                      <br>
+                      <p id="arror">
+                    </p>
+                   <button class="btn btn-primary mb-2" onclick="View()">View</button>
+                </div>
+                </div>
+                
+</div>
+      
+<div class="loader" style="display: none;" id="loader">
+    <img src="../loader.gif" alt="Loading" >
+    <div></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-storage.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyA94cgaEIXJGbn3VJuSYmJMZmrPAr9BuBI",
+    authDomain: "diploma-project-d485b.firebaseapp.com",
+    databaseURL: "https://diploma-project-d485b.firebaseio.com",
+    projectId: "diploma-project-d485b",
+    storageBucket: "diploma-project-d485b.appspot.com",
+    messagingSenderId: "247131547296",
+    appId: "1:247131547296:web:fc45347a1434ddb869cbc5",
+    measurementId: "G-PG9T64MM4G"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  var database=firebase.database();
+ var storage=firebase.storage();
+ var storageRef = storage.ref('');
+ var Adhar=sessionStorage.getItem('Adhar');
+var rootuser=database.ref('User');
+ database.ref('User/'+Adhar+'/File/').once('value', function(snapshot){
+                 if(snapshot.exists()){
+                    var contents = '';
+                    snapshot.forEach(function(data){
+                        var val = data.val();
+                        contents +='<ul>';
+                        contents+='<li>'+val.file +'</li>';
+                        contents += '</ul>';
+                    });
+                    $('#fil').append(contents);
+                }
+            });  
+            
+
+
+function View()
+{
+    var file=document.getElementById("filename").value
+    var error =document.getElementById("arror")
+    error.innerHTML="Complete Fields Properly"
+    error.innerHTML=""
+    if(file=="")
+    {
+        error.style.display="block"
+        error.innerHTML="Complete Fields"
+    }
+    else{
+                        rootuser.child(Adhar+'/File/'+file).once('value',function(snapshot){
+                        if(snapshot.val()==null)
+                        {
+                            error.style.display="block"
+                            error.innerHTML="No File is Present"
+                        }
+                        else if(snapshot.val().file==file)
+                        {
+                            sessionStorage.setItem('Adhar',Adhar);
+                            sessionStorage.setItem('File',file);
+                            window.location='file.html'
+                        }
+                        });
+
+        document.getElementById("filename").value=""
+    }
+}
+
+
+  </script>
+</body>
+</html>

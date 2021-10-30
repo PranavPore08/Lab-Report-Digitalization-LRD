@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="pdf.js"></script>
+  <script src="pdf.worker.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LRD</title>
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+     <!-- Css -->
+     <link rel="stylesheet" href="Hospital.css">
+     <link rel="shortcut icon" href="../Images/icon.png" type="image/x-icon">
+     <link rel="icon" href="../Images/icon.png" type="image/x-icon">
+       
+       
+</head>
+<body>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+    <div class="Fullpage">
+               <div class="header">
+              <img src="../Images/icon.png" height="75px" width="75px">
+                    <h3 id="title">Lab Report Digitalization</h3>
+                    <button class="SubmitAD" onclick="window.history.back()">Logout</button>
+                </div>
+                <hr>
+                
+                <div class="header">
+                    <button class="SubmitAD" onclick="Viewdiv()">View</button>
+                    <button class="SubmitAD" onclick="Adddiv()">User</button>
+                    <button class="SubmitAD" onclick="Uploaddiv()">Upload File</button>
+                    <button class="SubmitAD" onclick="UpdateAddressdiv()">Update Address</button>
+                    <button class="SubmitAD" onclick="UpdateMobilediv()">Update Mobile</button>
+                    <button class="SubmitAD" onclick="UpdatePassworddiv()">Update Password</button>
+                </div>
+                <hr>
+                <h3 id="title">Hospital</h3>
+                <div class="AdFormMain container">
+                <div id="View">
+                          <h3>View</h3>
+                          <div style="overflow-x:auto; display:block;">
+                            <table id ="orders" class="AdFormMain container" border="1" style ="width:100%">
+                              <tr>
+                                <th>User ID</th>
+                                <th>Name</th>
+                              </tr>
+                              
+                            </table>
+                          </div>
+
+                </div>
+
+
+                <div id="Add">
+                  <h3>User Add-Remove</h3>
+                  <div class="form-group col-md-12 col-sm-12">
+                    <label for="User">User Aadhar no.</label>
+                    <input type="text" pattern="^0[1-9]|[1-9]\d$" maxlength="12" placeholder="User Aadhar no." class="form-control" id="Adhar"  required> 
+                  </div>
+                  <p id="e">
+                  </p>
+                  <button class="btn btn-primary mb-2" onclick="Add()">Add</button>
+
+                  <div class="form-group col-md-12 col-sm-12">
+                    <label for="User">User Aadhar no.</label>
+                    <input type="text" pattern="^0[1-9]|[1-9]\d$" maxlength="12" placeholder="Aadhar no." class="form-control" id="Addhar"  required> 
+                  </div>
+                  <p id="er">
+                  </p>
+                  <button class="btn btn-primary mb-2" onclick="Remove()">Remove</button>
+                </div>
+
+                <div id="Upload">
+                  <h3>Upload file</h3>
+                  <div  id="one">
+                   <div class="form-group col-md-12 col-sm-12">
+                    <label for="User">User Aadhar No.</label>
+                    <input type="text" pattern="^0[1-9]|[1-9]\d$" maxlength="12" placeholder="Aadhar no." class="form-control" id="AdharId"  required> 
+                    </div>
+                    
+                    <div class="form-group col-md-12 col-sm-12">
+                      <label for="User">User File name</label>
+                      <input type="text" placeholder="File Name" class="form-control" id="file"  required> 
+                    </div>
+                      <p id="err">
+                       </p>
+                      <button class="btn btn-primary mb-2" onclick="next()">Next</button>
+                      
+                    </div>
+
+                    <div id="zero" class="form-group col-md-12 col-sm-12">
+                      <table id="List">
+                      </table>    
+                      <br>
+                      <button class="btn btn-primary mb-2" onclick="nextt()">Next page</button>
+                    </div>
+
+                    <div id="preview-container">
+                         <button id="upload-dialog">Choose PDF</button>
+                         <input type="file" id="pdf-file" name="pdf" accept="application/pdf" />
+                         <div id="pdf-loader">Loading Preview ..</div>
+                          <canvas id="pdf-preview" width="150"></canvas>
+                          <span id="pdf-name"></span><br><br>
+                          <button id="upload-button">Upload</button>
+                          <button id="cancel-pdf">Cancel</button>
+                  </div>
+                  
+                </div>
+
+                <div id="UpdateAddress" >
+                  <h3>Update Address</h3>
+                  <div class="form-group col-md-12 col-sm-12">
+                    <label for="bname">Current Address</label>
+                    <input type="text" placeholder="Current Address" class="form-control" id="currentaddress"  required> 
+                  </div>
+
+                  <div class="form-group col-md-12 col-sm-12">
+                    <label for="branch">New Address</label>
+                    <input type="text" placeholder="New Address" class="form-control" id="address"  required> 
+                  </div>
+                  <p id="erro">
+                  </p>
+    
+                  <button class="btn btn-primary mb-2" onclick="UpdateAddress()">Update</button>
+            </div>
+
+                <div id="UpdateMobile">
+                  <h3>Update Mobile No.</h3>
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label for="fname">Current Mobile No.</label>
+                        <input type="mobile" pattern="^0[1-9]|[1-9]\d$" placeholder="Mobile No." minlength="10" maxlength="10" placeholder="Current Mobile No." class="form-control" id="currentmobile"  required> 
+                      </div>
+
+                      <div class="form-group col-md-12 col-sm-12">
+                        <label for="mobile">New Mobile No.</label>
+                        <input type="mobile" pattern="^0[1-9]|[1-9]\d$" placeholder="New Mobile No." minlength="10" maxlength="10" placeholder="New Mobile No." class="form-control" id="mobile"  required> 
+                      </div>
+                      <p id="error">
+                      </p>
+        
+                      <button class="btn btn-primary mb-2" onclick="UpdateMobile()">Update</button>
+                </div>
+
+                <div id="UpdatePassword">   
+                  <h3>Update Password</h3>                     
+                      <div class="form-group col-md-12 col-sm-12">
+                        <label for="Cpwd">Current Password</label>
+                        <input type="text" placeholder="Current Password" class="form-control" id="currentpwd" required> 
+                      </div>
+                      
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label for="Password">New Password</label>
+                        <input type="text" placeholder="New Password" class="form-control" id="password" required> 
+                      </div>
+                      <p id="arror">
+                      </p>
+        
+                      <button class="btn btn-primary mb-2" onclick="UpdatePassword()">Update</button>
+                </div>
+              </div>
+              
+</div>
+      
+<div class="loader" style="display: none;" id="loader">
+    <img src="../loader.gif" alt="Loading" >
+    <div></div>
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-storage.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyA94cgaEIXJGbn3VJuSYmJMZmrPAr9BuBI",
+    authDomain: "diploma-project-d485b.firebaseapp.com",
+    databaseURL: "https://diploma-project-d485b.firebaseio.com",
+    projectId: "diploma-project-d485b",
+    storageBucket: "diploma-project-d485b.appspot.com",
+    messagingSenderId: "247131547296",
+    appId: "1:247131547296:web:fc45347a1434ddb869cbc5",
+    measurementId: "G-PG9T64MM4G"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  var database=firebase.database();
+  var HospitalId=sessionStorage.getItem('HospitalId');
+  
+  database.ref('Hospital/'+HospitalId+'/Users/').once('value', function(snapshot){
+        if(snapshot.exists()){
+            var content = '';
+            snapshot.forEach(function(data){
+                var val = data.val();
+                content +='<tr>';
+                content += '<td>' + val.Adhar + '</td>';
+                content += '<td>' + val.Name + '</td>';
+            content += '</tr>';
+            });
+            $('#orders').append(content);
+        }
+    });  
+
+  document.getElementById('View').style.display="initial";
+document.getElementById('Add').style.display="none";
+document.getElementById('UpdateAddress').style.display="none";
+document.getElementById('Upload').style.display="none";
+document.getElementById('UpdateMobile').style.display="none";
+document.getElementById('UpdatePassword').style.display="none";
+
+function Viewdiv()
+{
+document.getElementById('View').style.display="initial";
+document.getElementById('Add').style.display="none";
+document.getElementById('UpdateAddress').style.display="none";
+document.getElementById('Upload').style.display="none";
+document.getElementById('UpdateMobile').style.display="none";
+document.getElementById('UpdatePassword').style.display="none";
+}
+
+function Adddiv()
+{
+  document.getElementById('Add').style.display="initial";
+  document.getElementById('View').style.display="none";
+  document.getElementById('UpdateAddress').style.display="none";
+  document.getElementById('Upload').style.display="none";
+  document.getElementById('UpdateMobile').style.display="none";
+  document.getElementById('UpdatePassword').style.display="none";
+
+}
+function Uploaddiv()
+{
+    document.getElementById('View').style.display="none";
+    document.getElementById('UpdateAddress').style.display="none";
+    document.getElementById('Add').style.display="none";
+    document.getElementById('Upload').style.display="initial";
+    document.getElementById('one').style.display="initial";
+    document.getElementById('zero').style.display="none";
+    document.getElementById("preview-container").style.display="none";
+    document.getElementById('UpdateMobile').style.display="none";
+    document.getElementById('UpdatePassword').style.display="none"; 
+}
+
+function UpdateAddressdiv()
+{
+    document.getElementById('Add').style.display="none";
+    document.getElementById('View').style.display="none";
+    document.getElementById('UpdateAddress').style.display="initial";
+    document.getElementById('Upload').style.display="none";
+    document.getElementById('UpdateMobile').style.display="none";
+    document.getElementById('UpdatePassword').style.display="none";
+}
+
+
+function UpdateMobilediv()
+{
+    document.getElementById('Add').style.display="none";
+    document.getElementById('View').style.display="none";
+    document.getElementById('UpdateAddress').style.display="none";
+    document.getElementById('Upload').style.display="none";
+    document.getElementById('UpdateMobile').style.display="initial";
+    document.getElementById('UpdatePassword').style.display="none"; 
+}
+
+function UpdatePassworddiv()
+{
+  document.getElementById('Add').style.display="none";
+    document.getElementById('View').style.display="none";
+    document.getElementById('UpdateAddress').style.display="none";
+    document.getElementById('Upload').style.display="none";
+    document.getElementById('UpdateMobile').style.display="none";
+    document.getElementById('UpdatePassword').style.display="initial"; 
+}
+
+
+</script>
+
+
+    <script src="Hospital.js"></script>
+</body>
+</html>

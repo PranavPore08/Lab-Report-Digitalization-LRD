@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LRD</title>
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+     <!-- Css -->
+     <link rel="stylesheet" href="User.css">
+     <link rel="shortcut icon" href="../Images/icon.png" type="image/x-icon">
+     <link rel="icon" href="../Images/icon.png" type="image/x-icon">
+       
+</head>
+<body>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+    <div class="Fullpage">
+               <div class="header">
+              <img src="../Images/icon.png" height="75px" width="75px">
+                    <h3 id="title">Lab Report Digitalization</h3>
+                    <button class="SubmitAD" onclick="window.history.back()">Logout</button>
+                </div>
+                
+                <hr>
+                <div class="header" style="overflow-x:auto;">
+                    <button class="SubmitAD" onclick="Myfilediv()">My File</button>
+                    <button class="SubmitAD" onclick="Viewdiv()">View</button>
+                    <button class="SubmitAD" onclick="Creatediv()">Create File</button>
+                    <button class="SubmitAD" onclick="Changediv()">Change Agent</button>
+                    <button class="SubmitAD" onclick="ChangeNodiv()">Change Enroll.</button>
+                    <button class="SubmitAD" onclick="UpdateMobilediv()">Update Mobile</button>
+                    <button class="SubmitAD" onclick="UpdatePassworddiv()">Update Password</button>
+                </div>
+                <hr>
+                <h3 id="title">User</h3>
+                <div class="AdFormMain container">
+                <div id="Myfile">
+                          <h3>My Files</h3>
+                            <div style="overflow-x:auto; display:block;">
+                            <ul>
+                             <li><span class="caret" id="orders">Files</span>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="form-group col-md-12 col-sm-12">
+                      <label for="User">User File name</label>
+                      <input type="text" placeholder="File Name" class="form-control" id="filename" required> 
+                      <br>
+                       <p id="error">
+                       </p>
+                      <button class="btn btn-primary mb-2" onclick="View()">View</button>
+                      </div>
+                </div>
+
+                <div id="View">
+                  <h3>View Relation</h3>
+                  <div style="overflow-x:auto; display:block;">
+                    <table id ="hos" class="AdFormMain container" border="1" style ="width:100%">
+                        <tr>
+                          <th>Hospital Name</th>
+                        </tr>
+                      </table>
+                  </div><br>
+
+                  <div style="overflow-x:auto; display:block;">
+                    <table id ="lab" class="AdFormMain container" border="1" style ="width:100%">
+                        <tr>
+                          <th>Lab Name</th>
+                        </tr>
+                      </table>
+                  </div><br>
+
+                  <div style="overflow-x:auto; display:block;">
+                    <table id ="med" class="AdFormMain container" border="1" style ="width:100%">
+                        <tr>
+                          <th>Medical Name</th>
+                        </tr>
+                      </table>
+                  </div>
+                </div>
+
+                <div id="Create" >
+                  <h3>Create File</h3>
+                    <div class="form-group col-md-12 col-sm-12">
+                      <label for="fname">File Name</label>
+                      <input type="text" placeholder="File Name" class="form-control" id="file"  required> 
+                    </div>
+                    <p id="e">
+                    </p>
+                    <button class="btn btn-primary mb-2" onclick="Create()">Create</button>
+              </div>
+
+              <div id="Change" >
+                <h3>Change Agent</h3>
+                <div class="form-group col-md-12 col-sm-12">
+                  <label for="new">New Agent ID</label>
+                  <input type="text" placeholder="New Agent ID" class="form-control" id="newAgentId"  required> 
+                </div>
+                <p id="er">
+                </p>
+                <button class="btn btn-primary mb-2" onclick="Change()">Change</button>
+              </div>
+
+              <div id="ChangeNo">
+                <h3>Update Enroll.</h3>
+                <div class="form-group col-md-12 col-sm-12">
+                  <label for="User">New User Enroll.</label>
+                <input type="text" placeholder="Unique ID given by Company" class="form-control" id="Id"  required> 
+                </div>
+                <p id="errror">
+                </p>
+                <button class="btn btn-primary mb-2" onclick="ChangeNo()">Update</button>
+              </div>
+
+              <div id="UpdateMobile">
+                <h3>Update Mobile No.</h3>
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label for="fname">Current Mobile No.</label>
+                        <input type="mobile" pattern="^0[1-9]|[1-9]\d$" placeholder="Mobile No." minlength="10" maxlength="10" placeholder="Current Mobile No." class="form-control" id="currentmobile"  required> 
+                      </div>
+
+                      <div class="form-group col-md-12 col-sm-12">
+                        <label for="mobile">New Mobile No.</label>
+                        <input type="mobile" pattern="^0[1-9]|[1-9]\d$" placeholder="New Mobile No." minlength="10" maxlength="10" placeholder="New Mobile No." class="form-control" id="mobile"  required> 
+                      </div>
+                      <p id="err">
+                      </p>
+        
+                      <button class="btn btn-primary mb-2" onclick="UpdateMobile()">Update</button>
+                </div>
+
+                <div id="UpdatePassword">                        
+                  <h3>Update Password</h3>
+                      <div class="form-group col-md-12 col-sm-12">
+                        <label for="Cpwd">Current Password</label>
+                        <input type="text" placeholder="Current Password" class="form-control" id="currentpwd"  required> 
+                      </div>
+                      
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label for="Password">New Password</label>
+                        <input type="text" placeholder="New Password" class="form-control" id="password"  required> 
+                      </div>
+                      <p id="erro">
+                      </p>
+        
+                      <button class="btn btn-primary mb-2" onclick="UpdatePassword()">Next</button>
+                </div>
+              </div>
+              
+</div>
+      
+<div class="loader" style="display: none;" id="loader">
+    <img src="../loader.gif" alt="Loading" >
+    <div></div>
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-storage.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyA94cgaEIXJGbn3VJuSYmJMZmrPAr9BuBI",
+    authDomain: "diploma-project-d485b.firebaseapp.com",
+    databaseURL: "https://diploma-project-d485b.firebaseio.com",
+    projectId: "diploma-project-d485b",
+    storageBucket: "diploma-project-d485b.appspot.com",
+    messagingSenderId: "247131547296",
+    appId: "1:247131547296:web:fc45347a1434ddb869cbc5",
+    measurementId: "G-PG9T64MM4G"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+document.getElementById('Myfile').style.display="initial";
+document.getElementById('View').style.display="none";
+document.getElementById('Create').style.display="none";
+document.getElementById('Change').style.display="none";
+document.getElementById('ChangeNo').style.display="none";
+document.getElementById('UpdateMobile').style.display="none";
+document.getElementById('UpdatePassword').style.display="none";
+
+function Viewdiv()
+{   
+document.getElementById('Myfile').style.display="none";
+document.getElementById('View').style.display="initial";
+document.getElementById('Create').style.display="none";
+document.getElementById('Change').style.display="none";
+document.getElementById('ChangeNo').style.display="none";
+document.getElementById('UpdateMobile').style.display="none";
+document.getElementById('UpdatePassword').style.display="none";
+}
+function Creatediv()
+{
+    document.getElementById('Myfile').style.display="none";
+    document.getElementById('View').style.display="none";
+    document.getElementById('Create').style.display="initial";
+    document.getElementById('Change').style.display="none";
+    document.getElementById('ChangeNo').style.display="none";
+    document.getElementById('UpdateMobile').style.display="none";
+    document.getElementById('UpdatePassword').style.display="none";
+}
+
+function Changediv()
+{
+    document.getElementById('Myfile').style.display="none";
+    document.getElementById('View').style.display="none";
+    document.getElementById('Create').style.display="none";
+    document.getElementById('Change').style.display="initial";
+    document.getElementById('ChangeNo').style.display="none";
+    document.getElementById('UpdateMobile').style.display="none";
+    document.getElementById('UpdatePassword').style.display="none";
+}
+
+function ChangeNodiv()
+{
+    document.getElementById('Myfile').style.display="none";
+    document.getElementById('View').style.display="none";
+    document.getElementById('Create').style.display="none";
+    document.getElementById('Change').style.display="none";
+    document.getElementById('ChangeNo').style.display="initial";
+    document.getElementById('UpdateMobile').style.display="none";
+    document.getElementById('UpdatePassword').style.display="none"; 
+}
+
+function UpdateMobilediv()
+{
+    document.getElementById('Myfile').style.display="none";
+    document.getElementById('View').style.display="none";
+    document.getElementById('Create').style.display="none";
+    document.getElementById('Change').style.display="none";
+    document.getElementById('ChangeNo').style.display="none";
+    document.getElementById('UpdateMobile').style.display="initial";
+    document.getElementById('UpdatePassword').style.display="none"; 
+}
+
+function UpdatePassworddiv()
+{
+    document.getElementById('Myfile').style.display="none";
+    document.getElementById('View').style.display="none";
+    document.getElementById('Create').style.display="none";
+    document.getElementById('Change').style.display="none";
+    document.getElementById('ChangeNo').style.display="none";
+    document.getElementById('UpdateMobile').style.display="none";
+    document.getElementById('UpdatePassword').style.display="initial"; 
+}
+
+
+</script>
+
+
+    <script src="User.js"></script>
+</body>
+</html>

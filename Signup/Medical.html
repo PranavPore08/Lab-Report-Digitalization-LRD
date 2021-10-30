@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LRD</title>
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+     <!-- Css -->
+     <link rel="stylesheet" href="ad.css">
+     <link rel="shortcut icon" href="../Images/icon.png" type="image/x-icon">
+     <link rel="icon" href="../Images/icon.png" type="image/x-icon">
+       
+</head>
+<body>
+    <div class="Fullpage">
+        <div class="header">
+          <img src="../Images/icon.png" height="100px" width="100px">
+          <h3 id="title">Lab Report Digitalization</h3>
+          <button class="SubmitAD" onclick="window.location='Type.html'">Back</button>
+      </div>
+
+      <hr>
+      <h3 id="title2">Sign Up Form for Medical</h3> 
+         <div class="AdFormMain container ">
+                 
+              <div class="form-group col-md-12 col-sm-12">
+                  <label for="Name">Name of Medical</label>
+                  <input type="text" placeholder="Name" class="form-control" id="Name" required> 
+              </div>
+
+              <div class="form-group col-md-12 col-sm-12">
+                <label for="Medid">Medical ID</label>
+                <input type="text" placeholder="Medical ID" class="form-control" id="Medid"  required> 
+              </div>
+        
+                    
+                    <div class="form-group col-md-12 col-sm-12">
+                      <label for="Mobileo">Mobile No.</label>
+                      <input type="mobile" pattern="^0[1-9]|[1-9]\d$" placeholder="Mobile No." maxlength="10" minlength="10" class="form-control" id="Mobile"  required> 
+                    </div>
+                          
+                      <div class="form-group col-md-12 col-sm-12">
+                        <label for="Email">Email</label>
+                        <input type="email" placeholder="Email" class="form-control" id="Email" required> 
+                      </div>
+                        
+                          <div class="form-group col-md-12 col-sm-12">
+                            <label for="Address">Address</label>
+                            <input type="text" class="form-control" placeholder="Address" id="Address" required>
+                          </div>                        
+                              
+                                <div class="form-group col-md-12 col-sm-12">
+                                  <label for="Pwd">Passward</label>
+                                  <input type="password" placeholder="Passward" class="form-control" minlength="8" id="Pwd" required>
+                                </div>
+                                
+                               
+                                <div class="form-group col-md-12 col-sm-12">
+                                  <label for="ConfPwd">Confirm Passward</label>
+                                  <input type="password" placeholder="Confirm Passward" class="form-control" id="ConfPwd" required> 
+                              </div>
+
+                            <p id="error">
+                              Error
+                            </p>
+                            <button class="btn btn-primary mb-2" onclick="Medical()">Next</button>
+        </div>
+
+</div>
+</body>
+
+<div class="loader" style="display: none;" id="loader">
+    <img src="../loader.gif" alt="Loading" >
+    <div></div>
+</div>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyA94cgaEIXJGbn3VJuSYmJMZmrPAr9BuBI",
+    authDomain: "diploma-project-d485b.firebaseapp.com",
+    databaseURL: "https://diploma-project-d485b.firebaseio.com",
+    projectId: "diploma-project-d485b",
+    storageBucket: "diploma-project-d485b.appspot.com",
+    messagingSenderId: "247131547296",
+    appId: "1:247131547296:web:fc45347a1434ddb869cbc5",
+    measurementId: "G-PG9T64MM4G"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+<script src="Backend.js"></script>
+</body>
+</html>

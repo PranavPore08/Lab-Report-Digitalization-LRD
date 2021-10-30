@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LRD</title>
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+     <!-- Css -->
+     <link rel="stylesheet" href="ad.css">
+     <link rel="shortcut icon" href="../Images/icon.png" type="image/x-icon">
+     <link rel="icon" href="../Images/icon.png" type="image/x-icon">       
+</head>
+
+<div class="Fullpage">
+  <div class="header">
+
+      <img src="../Images/icon.png" height="100px" width="100px">
+      <h3 id="title">Lab Report Digitalization</h3>
+      <button class="SubmitAD" onclick="window.location='../index.html'">Back</button>
+  </div>
+  
+  <hr>
+  <h3 id="title2">Select Type of User</h3>
+                <div class="AdFormMain container ">
+                  <div class="form-group col-md-12">
+                    <label for="Category">Category</label>
+                    <select id="Category" class="form-control" required>
+                      <option selected value="">Select Category</option>
+                      <option value="User">User</option>
+                      <option value="Lab">Lab</option>
+                      <option value="Agent">Agent</option>
+                      <option value="Hospital">Hospital</option>
+                      <option value="Medical">Medical</option>
+                    </select>
+                  </div>
+                    <p id="error">
+                      
+                    </p>
+                    <button class="btn btn-primary mb-2" onclick="Type()">Next</button>
+                </div>
+                  
+</div>
+<script src="Backend.js"></script>
+</body>
+</html>

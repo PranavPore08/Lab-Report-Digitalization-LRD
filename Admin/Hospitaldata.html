@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LRD</title>
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+     <!-- Css -->
+     <link rel="stylesheet" href="ad.css">
+     <link rel="shortcut icon" href="../Images/icon.png" type="image/x-icon">
+     <link rel="icon" href="../Images/icon.png" type="image/x-icon">       
+</head>
+<body>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+<div class="Fullpage">
+  <div class="header">
+
+      <img src="../Images/icon.png" height="100px" width="100px">
+      <h3 id="title">Lab Report Digitalization</h3>
+      <button class="SubmitAD" onclick="window.history.back()">Back </button>
+  </div>
+  
+  <hr>
+  <h3 id="title2">Hospital Data</h3>
+  <div style="overflow-x:auto; display:block;">
+                    <table id ="orders" class="AdFormMain container" border="1" style ="width:100%">
+                        <tr>
+                          <th>Name</th>
+                          <th>Hospital Id</th>
+                          <th>Mobile</th>
+                          <th>Email</th>
+                          <th>Address</th>
+                          <th>Password</th>
+                        </tr>
+                      </table>
+</div>
+                  
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyA94cgaEIXJGbn3VJuSYmJMZmrPAr9BuBI",
+    authDomain: "diploma-project-d485b.firebaseapp.com",
+    databaseURL: "https://diploma-project-d485b.firebaseio.com",
+    projectId: "diploma-project-d485b",
+    storageBucket: "diploma-project-d485b.appspot.com",
+    messagingSenderId: "247131547296",
+    appId: "1:247131547296:web:fc45347a1434ddb869cbc5",
+    measurementId: "G-PG9T64MM4G"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+    var database = firebase.database();
+    database.ref('Hospital').once('value', function(snapshot){
+        if(snapshot.exists()){
+            var content = '';
+            snapshot.forEach(function(data){
+                var val = data.val();
+                content +='<tr>';
+                content += '<td>' + val.Name + '</td>';
+                content += '<td>' + val.HospitalId + '</td>';
+                content += '<td>' + val.Mobile + '</td>';
+                content += '<td>' + val.Email + '</td>';
+                content += '<td>' + val.Address + '</td>';
+                content += '<td>' + val.Password + '</td>';
+                content += '</tr>';
+            });
+            $('#orders').append(content);
+        }
+    });  
+</script>
+
+</body>
+</html>

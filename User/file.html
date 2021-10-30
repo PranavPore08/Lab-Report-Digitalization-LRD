@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LRD</title>
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+     <!-- Css -->
+     <link rel="stylesheet" href="User.css">
+     <link rel="shortcut icon" href="../Images/icon.png" type="image/x-icon">
+     <link rel="icon" href="../Images/icon.png" type="image/x-icon">
+       
+       
+</head>
+<body>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+    <div class="Fullpage">
+               <div class="header">
+              <img src="../Images/icon.png" height="75px" width="75px">
+                    <h3 id="title">Lab Report Digitalization</h3>
+                    <button class="SubmitAD" onclick="window.history.back()">Back</button>
+                    </div>
+                    <hr>
+                    <h2 id="title2">Files in Directory</h2>
+                <div class="AdFormMain container">
+                          <h3>List of Files</h3>
+                        <div style="overflow-x:auto; display:block;" align="center" display:block;">
+                            <table id="List" align="center" class="AdFormMain container" style ="width:100%">
+                            
+                            </table>
+                            </div>
+                </div>
+                
+</div>
+      
+<div class="loader" style="display: none;" id="loader">
+    <img src="../loader.gif" alt="Loading" >
+    <div></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-storage.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyA94cgaEIXJGbn3VJuSYmJMZmrPAr9BuBI",
+    authDomain: "diploma-project-d485b.firebaseapp.com",
+    databaseURL: "https://diploma-project-d485b.firebaseio.com",
+    projectId: "diploma-project-d485b",
+    storageBucket: "diploma-project-d485b.appspot.com",
+    messagingSenderId: "247131547296",
+    appId: "1:247131547296:web:fc45347a1434ddb869cbc5",
+    measurementId: "G-PG9T64MM4G"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  var database=firebase.database();
+ var storage=firebase.storage();
+  var storageRef = storage.ref('');
+var Adhar=sessionStorage.getItem('Adhar');
+var File=sessionStorage.getItem('File');
+var i=0,o=0;
+       storageRef.child(Adhar+'/'+File+'/').listAll().then(function(result){
+                        result.items.forEach(function(pdfRef){
+                        i++;
+                        pdfRef.getDownloadURL().then(function(url){
+                    console.log(url);
+                        var new_html='';
+                    new_html+='<tr>';
+                    new_html+='<td>o</td>';
+                    new_html+='<td><a href='+url+' target="_blank">File '+(++o)+'</a>';
+                    new_html+='</td>';
+                    new_html+='</tr>';
+                    $('#List').append(new_html);
+                });
+            });
+            });
+
+  </script>
+</body>
+</html>
